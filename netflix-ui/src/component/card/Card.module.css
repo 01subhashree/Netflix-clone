@@ -1,0 +1,94 @@
+.row_poster {
+  height: 100px;
+  width: 170px;
+  margin-right: 0.5rem;
+}
+
+.row_poster:hover {
+  transform: scale(1.09);
+  height: 180px;
+  opacity: 1;
+}
+
+.row_posterLarge {
+  height: 250px;
+  width: 170px;
+  margin-right: 0.5rem;
+}
+.row_posterLarge:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.cardImage {
+  height: 100%;
+  width: 100%;
+}
+.cardImage:hover {
+  height: 70%;
+  width: 100%;
+}
+
+.hoverCardScreen {
+  height: 200px;
+  width: 220px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  background-color: black;
+  padding-bottom: 0.3rem;
+}
+
+.largeHoverCardScreen {
+  width: 325px;
+  height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding-bottom: 0.3rem;
+  background-color: black;
+}
+.LagrecardImage2 {
+  object-fit: cover;
+  height: 65%;
+  width: 100%;
+}
+.cardImage2 {
+  height: 65%;
+  width: 100%;
+}
+
+.largeCardInfo {
+  width: 93%;
+  position: absolute;
+  top: 13.7rem;
+  padding: 0 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardInfo {
+  width: 93%;
+  position: absolute;
+  top: 10rem;
+  padding: 0 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+.largeCard_icons {
+  display: flex;
+  gap: 0.3rem;
+  font-size: 1.5rem;
+}
+.card_icons {
+  display: flex;
+  gap: 0.3rem;
+  font-size: 1rem;
+}

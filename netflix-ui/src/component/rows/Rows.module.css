@@ -1,0 +1,31 @@
+.row{
+    color: white;
+    margin-left: 1.25rem;
+}
+
+.row_posters{
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding: 20px  0;
+}
+
+.row_posters::-webkit-scrollbar{
+    display: none;
+}
+
+
+.RowSlider{
+    display: flex;
+    gap: 0.5rem;
+}
+.silderIcon{
+    padding: 0.3rem 0.4rem;
+    width: 6rem;
+    background-color: rgba(46, 47, 48, 0.63);
+    color: red;
+    height: 2rem;
+    margin: auto;
+    border-radius: 1.5rem;
+    z-index: 1;
+}
