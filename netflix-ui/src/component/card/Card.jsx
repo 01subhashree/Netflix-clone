@@ -10,10 +10,14 @@ import {
   AiFillDislike,
   AiOutlinePlusCircle,
 } from "react-icons/ai";
+import { selectUser } from "../../redux/userSlicer";
+import { useSelector } from "react-redux";
 
 export default function Card({ movie, isLargeRow }) {
   const [trailerUrl, setTrailerUrl] = useState("");
   const [isHover, setIsHover] = useState(false);
+
+  const user = useSelector(selectUser);
 
   const base_url = "https://image.tmdb.org/t/p/original/";
 
@@ -35,7 +39,16 @@ export default function Card({ movie, isLargeRow }) {
     },
   };
 
-  const addToMylist = () => {};
+  const addToMylist = async () => {
+    try {
+      await axios.post("http://localhost:5000/api/user/add", {
+        email: user.email,
+        data: movie,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const getMovieTrailer = (id) => {
     axios
       .get(
