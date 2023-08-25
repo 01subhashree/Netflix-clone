@@ -1,5 +1,11 @@
 import React from "react";
+import Navbar from "../../component/navbar/Navbar";
 
 export default function TVShows() {
-  return <div>tv shows</div>;
+  return (
+    <div>
+      <Navbar />
+      tv shows
+    </div>
+  );
 }

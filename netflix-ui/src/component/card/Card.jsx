@@ -10,10 +10,11 @@ import {
   AiFillDislike,
   AiOutlinePlusCircle,
 } from "react-icons/ai";
+import { BsCheckCircle } from "react-icons/bs";
 import { selectUser } from "../../redux/userSlicer";
 import { useSelector } from "react-redux";
 
-export default function Card({ movie, isLargeRow }) {
+export default function Card({ movie, isLargeRow, isLiked, Index }) {
   const [trailerUrl, setTrailerUrl] = useState("");
   const [isHover, setIsHover] = useState(false);
 
@@ -21,12 +22,12 @@ export default function Card({ movie, isLargeRow }) {
 
   const base_url = "https://image.tmdb.org/t/p/original/";
 
-  let width = 200;
+  let width = 220;
   let height = 150;
 
   if (isLargeRow) {
-    width = 310;
-    height = 220;
+    width = 300;
+    height = 290;
   }
 
   const opts = {
@@ -61,7 +62,7 @@ export default function Card({ movie, isLargeRow }) {
           const trailer = videos.find(
             (video) => video.name === "Official Trailer"
           );
-          console.log(trailer);
+          // console.log(trailer);
           setTrailerUrl(trailer?.key); // Fixed typo: trailer?.Key to trailer?.key
         }
       })
@@ -86,30 +87,25 @@ export default function Card({ movie, isLargeRow }) {
 
   const handleClick = (id) => {
     getMovieTrailer(id);
+    setIsHover(true);
   };
 
-  console.log(trailerUrl, "key");
+  // console.log(trailerUrl, "key");
   return (
     <div
-      onMouseEnter={() => setIsHover(true)}
+      onMouseEnter={() => handleClick(movie.id)}
       onMouseLeave={() => setIsHover(false)}
+      style={{ left: isHover && Index * 170 - 38 + Index * 4 }}
       className={isLargeRow ? Style.row_posterLarge : Style.row_poster}
     >
       <img
-        className={Style.cardImage}
-        // key={movie.id}
+        className={isLargeRow ? Style.largeCardImage : Style.cardImage}
         src={`${base_url}${isLargeRow ? movie.largeImg : movie.image}`}
         alt={movie.name}
-        onMouseEnter={() => handleClick(movie.id)}
       />
       {isHover && (
-        <div
-          // style={{ left: isHover && Index * 225 - 50 + Index * 2.5 }}
-          className={
-            isLargeRow ? Style.largeHoverCardScreen : Style.hoverCardScreen
-          }
-        >
-          {trailerUrl && trailerUrl !== undefined ? (
+        <>
+          {trailerUrl && trailerUrl !== undefined && (
             <YouTube
               videoId={trailerUrl}
               opts={opts}
@@ -117,15 +113,8 @@ export default function Card({ movie, isLargeRow }) {
               onEnd={onEnd}
               className={Style.video}
             />
-          ) : (
-            <img
-              className={isLargeRow ? Style.LagrecardImage2 : Style.cardImage2}
-              // key={movie.id}
-              src={`${base_url}${isLargeRow ? movie.largeImg : movie.image}`}
-              alt={movie.name}
-              onClick={() => handleClick(movie.id)}
-            />
           )}
+
           <div className={isLargeRow ? Style.largeCardInfo : Style.cardInfo}>
             <p>{movie.name}</p>
             <div
@@ -134,10 +123,14 @@ export default function Card({ movie, isLargeRow }) {
               <AiFillPlayCircle />
               <AiFillDislike />
               <AiFillLike />
-              <AiOutlinePlusCircle onClick={addToMylist} />
+              {isLiked ? (
+                <BsCheckCircle />
+              ) : (
+                <AiOutlinePlusCircle onClick={addToMylist} />
+              )}
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

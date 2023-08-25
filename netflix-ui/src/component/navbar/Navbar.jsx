@@ -50,10 +50,10 @@ export default function Navbar() {
         <div
           className={isopen ? style.mobilenav_container : style.nav_container}
         >
-          <p>Home</p>
-          <p>Tv shows</p>
-          <p>Movies</p>
-          <p>My List</p>
+          <p onClick={() => navigate("/")}>Home</p>
+          <p onClick={() => navigate("/tv")}>Tv shows</p>
+          <p onClick={() => navigate("/movies")}>Movies</p>
+          <p onClick={() => navigate("/mylist")}>My List</p>
         </div>
         <div
           className={

@@ -28,7 +28,7 @@ export default function HomePage() {
   };
 
   return (
-    <div>
+    <div style={{ overflow: "hidden" }}>
       <Navbar />
       <Banner />
       <Row
