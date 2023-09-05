@@ -27,11 +27,7 @@ export default function SignIn({ email }) {
   const signIn = (e) => {
     e.preventDefault();
 
-    signInWithEmailAndPassword(
-      auth,
-      emailId.current.value,
-      passwordRef.current.value
-    )
+    signInWithEmailAndPassword(auth, emailId, passwordRef.current.value)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);

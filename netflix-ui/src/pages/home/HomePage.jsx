@@ -22,11 +22,12 @@ export default function HomePage() {
     }
   }, [genresLoaded]);
 
-  console.log(movies);
+  // console.log(movies);
   const getMoviesFromRange = (from, to) => {
     return movies.slice(from, to);
   };
 
+  console.log("movies fro homepage", movies);
   return (
     <div style={{ overflow: "hidden" }}>
       <Navbar />

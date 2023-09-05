@@ -9,10 +9,13 @@ app.use(cors()); // Fix typo here
 app.use(express.json());
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/netflix", {
-    useNewUrlParser: true, // Fix typo here
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://subhashree_01:8jS287Y7sp4gzyhc@cluster0.jor9hn3.mongodb.net/netflix",
+    {
+      useNewUrlParser: true, // Fix typo here
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
     console.log("Database connected");
   })
@@ -22,4 +25,6 @@ mongoose
 
 app.use("/api/user", userRoutes);
 
-app.listen(5000, console.log("Server started on port 5173"));
+app.listen(5000, console.log("Server started on port 5000"));
+
+// mongodb+srv://ssubhashree094:<D29TZ3NTmh6cX08e>@cluster0.nuaqyiu.mongodb.net/

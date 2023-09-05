@@ -1,5 +1,6 @@
 .row {
   color: white;
+  position: relative;
 }
 
 .row h2 {
@@ -11,11 +12,10 @@
   width: max-content;
   transform: translateX(0px);
   transition: all 1s ease;
-  /* overflow-y: hidden;
-  overflow-x: scroll; */
   padding: 20px 0;
   margin-left: 50px;
   transform: translateX(0px);
+  /* gap: 8px; */
 }
 
 .row_posters::-webkit-scrollbar {
@@ -24,7 +24,6 @@
 
 .wrapper {
   display: flex;
-  position: relative;
   gap: 1rem;
 }
 
@@ -36,7 +35,7 @@
   top: 0;
   bottom: 0;
   margin: auto;
-  z-index: 10;
+  z-index: 97;
   background-color: rgb(22, 22, 22, 0.5);
   height: 100%;
   width: 50px;
@@ -51,6 +50,6 @@
   width: 50px;
   margin: auto;
   background-color: rgb(22, 22, 22, 0.5);
-  z-index: 10;
+  z-index: 97;
   height: 100%;
 }

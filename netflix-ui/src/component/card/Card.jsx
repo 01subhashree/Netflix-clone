@@ -12,22 +12,24 @@ import {
 } from "react-icons/ai";
 import { BsCheckCircle } from "react-icons/bs";
 import { selectUser } from "../../redux/userSlicer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeMovieFromLiked } from "../../redux/videoSlicer";
 
 export default function Card({ movie, isLargeRow, isLiked, Index }) {
   const [trailerUrl, setTrailerUrl] = useState("");
   const [isHover, setIsHover] = useState(false);
 
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   const base_url = "https://image.tmdb.org/t/p/original/";
 
   let width = 220;
-  let height = 150;
+  let height = 180;
 
   if (isLargeRow) {
     width = 300;
-    height = 290;
+    height = 250;
   }
 
   const opts = {
@@ -95,7 +97,6 @@ export default function Card({ movie, isLargeRow, isLiked, Index }) {
     <div
       onMouseEnter={() => handleClick(movie.id)}
       onMouseLeave={() => setIsHover(false)}
-      style={{ left: isHover && Index * 170 - 38 + Index * 4 }}
       className={isLargeRow ? Style.row_posterLarge : Style.row_poster}
     >
       <img
@@ -104,16 +105,28 @@ export default function Card({ movie, isLargeRow, isLiked, Index }) {
         alt={movie.name}
       />
       {isHover && (
-        <>
-          {trailerUrl && trailerUrl !== undefined && (
-            <YouTube
-              videoId={trailerUrl}
-              opts={opts}
-              onReady={onReady}
-              onEnd={onEnd}
-              className={Style.video}
+        <div
+          className={
+            isLargeRow ? Style.largeHoverCardScreen : Style.hoverCardScreen
+          }
+          style={{ left: isHover && Index * 4 - 35 + Index }}
+        >
+          <div className={Style.image_video_container}>
+            <img
+              className={isLargeRow ? Style.LagrecardImage2 : Style.cardImage2}
+              src={`${base_url}${isLargeRow ? movie.largeImg : movie.image}`}
+              alt={movie.name}
             />
-          )}
+            {trailerUrl && trailerUrl !== undefined && (
+              <YouTube
+                videoId={trailerUrl}
+                opts={opts}
+                onReady={onReady}
+                onEnd={onEnd}
+                className={Style.video}
+              />
+            )}
+          </div>
 
           <div className={isLargeRow ? Style.largeCardInfo : Style.cardInfo}>
             <p>{movie.name}</p>
@@ -124,13 +137,22 @@ export default function Card({ movie, isLargeRow, isLiked, Index }) {
               <AiFillDislike />
               <AiFillLike />
               {isLiked ? (
-                <BsCheckCircle />
+                <BsCheckCircle
+                  onClick={() => {
+                    dispatch(
+                      removeMovieFromLiked({
+                        movieId: movie.id,
+                        email: user.email,
+                      })
+                    );
+                  }}
+                />
               ) : (
                 <AiOutlinePlusCircle onClick={addToMylist} />
               )}
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

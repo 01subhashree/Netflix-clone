@@ -1,17 +1,18 @@
 .likedMovies_screen {
+  overflow: hidden;
   height: 100vh;
-  padding: 5rem 0 2rem 2rem;
-  margin-right: 2.5rem;
 }
-.likedMovies_screen h1 {
+.likedMovies_screenDiv {
+  padding: 5rem 2rem 0 2rem;
+}
+.likedMovies_screenDiv h2 {
   color: #fff;
-  margin-top: 2rem;
 }
 .likedMovies {
-  margin-top: 2rem;
+  margin-top: 3rem;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   row-gap: 2rem;
   position: relative;
 }

@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../component/navbar/Navbar";
-import { selectUser } from "../../redux/userSlicer";
-import { useEffect } from "react";
+// import { selectUser } from "../../redux/userSlicer";
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { auth } from "../../utility/firebase";
 import { getUsersLikedMovies } from "../../redux/videoSlicer";
 import Card from "../../component/card/Card";
 import style from "./UserListedMovies.module.css";
@@ -9,24 +11,34 @@ import style from "./UserListedMovies.module.css";
 export default function UserListedMovies() {
   const movies = useSelector((state) => state.netflix.movies);
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
+  const [email, setEmail] = useState(undefined);
+
+  onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) setEmail(currentUser.email);
+  });
 
   useEffect(() => {
-    if (user) {
-      dispatch(getUsersLikedMovies(user.email));
+    if (email) {
+      dispatch(getUsersLikedMovies(email));
     }
-  }, [user]);
+  }, [email]);
+
+  console.log(movies);
+  console.log(email);
 
   return (
     <div className={style.likedMovies_screen}>
-      <Navbar />
-      <h1>My List</h1>
-      <div className={style.likedMovies}>
-        {movies.map((movie) => (
-          <div key={movie.id} className={style.likedMovies_cards}>
-            <Card movie={movie} isLiked={true} />
-          </div>
-        ))}
+      <div className={style.likedMovies_screenDiv}>
+        <Navbar />
+        <h2>My List</h2>
+        <div className={style.likedMovies}>
+          {movies &&
+            movies.map((movie) => (
+              <div key={movie.id} className={style.likedMovies_cards}>
+                <Card movie={movie} isLiked={true} />
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );

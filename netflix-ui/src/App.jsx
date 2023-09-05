@@ -17,7 +17,7 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(user);
+  // console.log(user);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
