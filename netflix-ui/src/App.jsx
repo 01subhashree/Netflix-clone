@@ -44,8 +44,8 @@ function App() {
       <Routes>
         <Route path="/" element={!user ? <Signup /> : <HomePage />} />
         <Route path="/profile" element={<ProfileScreen />} />
-        <Route exact path="/tv" element={<TVShows />} />
-        <Route exact path="/movies" element={<MoviePage />} />
+        {/* <Route exact path="/tv" element={<TVShows />} />
+        <Route exact path="/movies" element={<MoviePage />} /> */}
         <Route exact path="/mylist" element={<UserListedMovies />} />
       </Routes>
     </div>
